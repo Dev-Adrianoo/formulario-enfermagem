@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Sintomas</title>
+</head>
+<body>
+    <h1>Dados</h1>
+    <div id="resultado"></div>
+    <script>
+        const nome = sessionStorage.getItem('nome');
+        const cpf = sessionStorage.getItem('CPF');
+        const sintomas = sessionStorage.getItem('sintomas');
+        if(nome && cpf && sintomas){
+            document.getElementById('resultado').innerHTML = `
+            <p><strong>Nome:</strong> ${nome}</p>
+            <p><strong>CPF:</strong> ${cpf}</p>
+            <p><strong>Sintomas:</strong> ${sintomas}</p>`
+        }
+        else {
+            document.getElementById('resultado').innerHTML = '<p>Dados não encontrados.</p>';
+        }
+    </script>
+</body>
+</html>
