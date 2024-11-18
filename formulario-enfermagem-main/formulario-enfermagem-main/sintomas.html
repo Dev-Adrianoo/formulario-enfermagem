@@ -14,11 +14,13 @@
         const nome = sessionStorage.getItem('nome');
         const cpf = sessionStorage.getItem('CPF');
         const sintomas = sessionStorage.getItem('sintomas');
+        const chatGPTResponse = sessionStorage.getItem('chatGPTResponse');
         if(nome && cpf && sintomas){
             document.getElementById('resultado').innerHTML = `
             <p><strong>Nome:</strong> ${nome}</p>
             <p><strong>CPF:</strong> ${cpf}</p>
-            <p><strong>Sintomas:</strong> ${sintomas}</p>`
+            <p><strong>Sintomas:</strong> ${sintomas}</p>
+            <p><strong>possiveis causas sugeridas pelo chatGPT: </strong> ${chatGPTResponse}</p>`
         }
         else {
             document.getElementById('resultado').innerHTML = '<p>Dados não encontrados.</p>';

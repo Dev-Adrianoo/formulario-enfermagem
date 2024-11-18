@@ -30,7 +30,7 @@ button:hover {
     border: 2px solid black;
     border-radius: 5px;
     background-color: antiquewhite;
-    height: 150px;
+    height: 300px;
     width: 300px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.514);
 }

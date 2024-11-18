@@ -1,0 +1,63 @@
+
+.pass{color: green;}
+.fail{color: red;}
+
+body {
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+background-color: #5f0c5fc0;
+background-image: url(imagens/medical-banner-with-doctor-wearing-goggles.jpg);
+background-size: cover;
+height: 95vh;
+background-repeat: no-repeat;
+background-position: right center;
+    }
+h1 {
+    text-align: center;
+    color: white;
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.503);
+}
+.formulario{
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.514);
+    text-align:left;
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.712);
+    font-size: 18px;
+    border-radius: 5px;
+    width: 450px;
+    height: 375px;
+    margin: auto;
+    background-color: rgba(240, 248, 255, 0.774);
+
+}
+div > label > input {
+    margin: 10px;
+    width: 150px;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.nomeInput{
+    margin-top: 20px;
+    width: 270px;
+}
+.CPFinput{
+    margin-left: 23px;
+    width: 270px;
+}
+.textInput{
+    border-radius: 5px;
+    width: 270px;
+    border: 2px solid rgba(0, 0, 0, 0.644);
+}
+button{
+    width: 100px;
+    padding: 3px;
+}
+button:hover {
+    background-color: azure;
+    text-decoration: underline;
+}

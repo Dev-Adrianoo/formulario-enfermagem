@@ -3,114 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário</title>
-    <style>
-
-        .pass{color: green;}
-        .fail{color: red;}
-
-        body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        background-color: #5f0c5fc0;
-        background-image: url(imagens/medical-banner-with-doctor-wearing-goggles.jpg);
-        background-size: cover;
-        height: 95vh;
-        background-repeat: no-repeat;
-        background-position: right center;
-            }
-        h1 {
-            text-align: center;
-            color: white;
-            text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.503);
-        }
-        .formulario{
-            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.514);
-            text-align:left;
-            padding: 10px;
-            margin: 10px;
-            border: 2px solid rgba(0, 0, 0, 0.712);
-            font-size: 18px;
-            border-radius: 5px;
-            width: 450px;
-            height: 375px;
-            margin: auto;
-            background-color: rgba(240, 248, 255, 0.774);
-
-        }
-        div > label > input {
-            margin: 10px;
-            width: 150px;
-            padding: 7px;
-            border-radius: 5px;
-        }
-
-        .nomeInput{
-            margin-top: 20px;
-            width: 270px;
-        }
-        .CPFinput{
-            margin-left: 23px;
-            width: 270px;
-        }
-        .textInput{
-            border-radius: 5px;
-            width: 270px;
-            border: 2px solid rgba(0, 0, 0, 0.644);
-        }
-        button{
-            width: 100px;
-            padding: 3px;
-        }
-        button:hover {
-            background-color: azure;
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="styleIndex.css">
+    <title>Ficha de Triagem</title>
 </head>
 <body>
     <h1>Ficha de Triagem</h1>
     <div class="formulario">
         <label for="nome">
-        Nome:
-        <input type="text" id="nome" placeholder="Nome" class="nomeInput"> <br>
+            Nome:
+            <input type="text" id="nome" placeholder="Nome" class="nomeInput"> <br>
         </label>
         <label for="CPF">
-        CPF: <input type="text" id="CPF" placeholder="000.000.000-00" maxlength="11" class="CPFinput"> <br>
+            CPF:
+            <input type="text" id="CPF" placeholder="000.000.000-00" maxlength="11" class="CPFinput"> <br>
         </label>
         <label for="sintomas">
-        Sintomas:  <textarea name="sintomas" id="sintomas" placeholder="Digite os sintomas do Paciente" minlength="5" maxlength="100" class="textInput"></textarea>  <br> <br>
+            Sintomas:
+            <textarea name="sintomas" id="sintomas" placeholder="Digite os sintomas do paciente" minlength="5" maxlength="100" class="textInput"></textarea> <br> <br>
         </label>
 
         <button onclick="verificarCadastro()">Verificar</button>
-        <h3>Confirmação agendamento</h3>
+        <h3>Confirmação de Agendamento</h3>
         <div id="resultados"></div>
     </div>
+
     <script>
-        function verificarCadastro(){
-            const resultado = document.getElementById('resultados') 
-            resultado.innerHTML = ' ';
-            const nome = document.getElementById('nome').value;
-            const CPF = document.getElementById('CPF').value;
-            const sintomas = document.getElementById('sintomas').value;
-        //Verificando tamanho do nome: 
-        if(nome.length >= 3 && CPF.length === 11 && !isNaN(CPF) && sintomas.length >= 5 && sintomas.length <= 100 ){
-            resultado.innerHTML += '<p class="pass">✔️ Nome válido </p>'; 
-            resultado.innerHTML +='<p class="pass"> ✔️ CPF CORRETO! ';
-            resultado.innerHTML += '<p class="pass"> ✔️ Dentro dos parâmetros </p>';
-            sessionStorage.setItem('nome', nome); 
-            sessionStorage.setItem('CPF', CPF);
-            sessionStorage.setItem('sintomas', sintomas);
-            window.location.href = 'sintomas.html';
-        }else{
-            resultado.innerHTML += '<p class="fail">❌ Nome Possui menos de 2 letras.</p>';
-            resultado.innerHTML +='<p class="fail"> ❌ CPF está muito curto.</p>';
-            resultado.innerHTML += '<p class="fail"> ❌ Quantidade de caractéres insuficiente</p>';
-            alert("Acesso NEGADO: Verifique as informações!");
+        async function verificarCadastro() {
+            const resultado = document.getElementById('resultados');
+            resultado.innerHTML = ''; // Limpar mensagens anteriores
+
+            const nome = document.getElementById('nome').value.trim();
+            const CPF = document.getElementById('CPF').value.trim();
+            const sintomas = document.getElementById('sintomas').value.trim();
+
+          
+            if (nome.length >= 3 && CPF.length === 11 && !isNaN(CPF) && sintomas.length >= 5 && sintomas.length <= 100) {
+                resultado.innerHTML += '<p class="pass">✔️ Nome válido</p>';
+                resultado.innerHTML += '<p class="pass">✔️ CPF válido</p>';
+                resultado.innerHTML += '<p class="pass">✔️ Sintomas dentro dos parâmetros</p>';
+
+                sessionStorage.setItem('nome', nome);
+                sessionStorage.setItem('CPF', CPF);
+                sessionStorage.setItem('sintomas', sintomas);
+
+
+                try {
+                    const response = await fetch('https://api.openai.com/v1/completions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer <key>'
+                        },
+                        body: JSON.stringify({
+                            model: 'text-davinci-003',
+                            prompt: `O paciente apresenta os seguintes sintomas: ${sintomas}. Quais são as possíveis causas?`,
+                            max_tokens: 100
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Erro na API: ${response.statusText}`);
+                    }
+
+                    const data = await response.json();
+
+                    // Verificando se há uma resposta válida
+                    if (data.choices && data.choices.length > 0) {
+                        const chatGPTResponse = data.choices[0].text.trim();
+                        sessionStorage.setItem('chatGPTResponse', chatGPTResponse);
+                        window.location.href = 'sintomas.html';
+                    } else {
+                        throw new Error('A resposta da API não contém escolhas válidas.');
+                    }
+                } catch (error) {
+                    console.error('Erro ao consultar a API:', error);
+                    resultado.innerHTML += '<p class="fail">❌ Erro ao consultar a API. Verifique o console.</p>';
+                }
+            } else {
+                // Mensagens de erro
+                if (nome.length < 3) resultado.innerHTML += '<p class="fail">❌ Nome inválido (mínimo 3 caracteres).</p>';
+                if (CPF.length !== 11 || isNaN(CPF)) resultado.innerHTML += '<p class="fail">❌ CPF inválido.</p>';
+                if (sintomas.length < 5 || sintomas.length > 100) resultado.innerHTML += '<p class="fail">❌ Sintomas fora do limite permitido.</p>';
+                alert("Erro nos dados: verifique as informações.");
+            }
         }
-    }
     </script>
 </body>
 </html>
