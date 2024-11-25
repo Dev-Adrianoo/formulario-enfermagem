@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="stylesIndex/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_forward" />
     <title>Formulário</title>
+    <link rel="shortcut icon" href="imagens/nurse (1).png" type="image/x-icon">
+    <script src="script.js"></script>
 </head>
 <body>
     <form onsubmit="verificarCadastro(event); return false" class="formulario">
@@ -31,47 +33,5 @@
                 </div>
             </fieldset>
         </form>
-    <script>
-        function formatarCPF(){
-            const cpfField = document.getElementById("CPF");
-            let cpf = cpfField.value;
-
-            cpf = cpf.replace(/\D/g, '');
-            if (cpf.length <= 11){
-                cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2'); 
-                cpf = cpf.replace(/(\d{3})(\d)/, '$1.$2'); 
-                cpf = cpf.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-            }
-            cpfField.value = cpf;
-        }
-
-        function verificarCadastro(event){
-            event.preventDefault();
-            const resultado = document.getElementById('resultados');
-            resultado.innerHTML = ' ';
-            const nome = document.getElementById('nome').value;
-            const CPF = document.getElementById('CPF').value;
-            const sintomas = document.getElementById('sintomas').value;
-
-            const cpfClear = CPF.replace(/\D/g, '');
-        //Verificando tamanho do nome: 
-
-        if(nome.length >= 3 && CPF.length === 14 && !isNaN(cpfClear) && sintomas.length >= 5 && sintomas.length <= 100 ){
-           // resultado.innerHTML += '<p class="pass">✔️</p>'; 
-           // resultado.innerHTML += '<p class="pass">✔️</p>';
-           // resultado.innerHTML += '<p class="pass">✔️</p>';
-            sessionStorage.setItem('nome', nome); 
-            sessionStorage.setItem('CPF', CPF);
-            sessionStorage.setItem('sintomas', sintomas);
-            window.location.href = '/sintomas.html';
-
-        }else{
-         //  resultado.innerHTML += '<p class="fail">❌ Nome Possui menos de 2 letras.</p>';
-         //  resultado.innerHTML +='<p class="fail"> ❌ CPF está muito curto.</p>';
-         //  resultado.innerHTML += '<p class="fail"> ❌ Quantidade de caractéres insuficiente</p>';
-            alert("Acesso NEGADO: Verifique as informações!");
-        }
-    }
-    </script>
 </body>
 </html>
