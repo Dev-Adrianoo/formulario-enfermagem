@@ -7,17 +7,22 @@
     <title>Sintomas</title>
 </head>
 <body>
-    <div id="resultado"></div>
-    <a href="/index.html"><button>Voltar</button></a>
+    <section class="section"> 
+        <h1>Dados</h1>
+        <a href="https://www.ubbonline.org.br/noticias-10-cuidados-essenciais-para-o-uso-correto-de-medicamentos.html" target="_blank">
+            <img src="imagens/nurse.png" class="nurse"></a>
+        <div id="resultado"></div>
+        <a href="/index.html"><button>Voltar</button></a>
+    </section>
     <script>
         const nome = sessionStorage.getItem('nome');
         const cpf = sessionStorage.getItem('CPF');
         const sintomas = sessionStorage.getItem('sintomas');
         if(nome && cpf && sintomas){
             document.getElementById('resultado').innerHTML = `
-            <p><strong>Nome:</strong> ${nome}</p>
-            <p><strong>CPF:</strong> ${cpf}</p>
-            <p><strong>Sintomas:</strong> ${sintomas}</p>`
+            <p><strong>Nome: </strong> ${nome}</p>
+            <p><strong>CPF: </strong> ${cpf}</p>
+            <p><strong>Sintomas: </strong> ${sintomas}</p>`
         }
         else {
             document.getElementById('resultado').innerHTML = '<p>Dados não encontrados.</p>';
