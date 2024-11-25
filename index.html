@@ -3,110 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesIndex/style.css">
     <title>Formulário</title>
-    <style>
-
-        .pass{color: green;}
-        .fail{color: red;}
-
-        body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        background-color: #5f0c5fc0;
-        background-image: url(imagens/medical-banner-with-doctor-wearing-goggles.jpg);
-        background-size: cover;
-        height: 95vh;
-        background-repeat: no-repeat;
-        background-position: right center;
-            }
-        h1 {
-            text-align: center;
-            color: white;
-            text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.503);
-        }
-        .formulario{
-            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.514);
-            text-align:left;
-            padding: 10px;
-            margin: 10px;
-            border: 2px solid rgba(0, 0, 0, 0.712);
-            font-size: 18px;
-            border-radius: 5px;
-            width: 450px;
-            height: 375px;
-            margin: auto;
-            background-color: rgba(240, 248, 255, 0.774);
-
-        }
-        div > label > input {
-            margin: 10px;
-            width: 150px;
-            padding: 7px;
-            border-radius: 5px;
-        }
-
-        .nomeInput{
-            margin-top: 20px;
-            width: 270px;
-        }
-        .CPFinput{
-            margin-left: 23px;
-            width: 270px;
-        }
-        .textInput{
-            border-radius: 5px;
-            width: 270px;
-            border: 2px solid rgba(0, 0, 0, 0.644);
-        }
-        button{
-            width: 100px;
-            padding: 3px;
-        }
-        button:hover {
-            background-color: azure;
-        }
-    </style>
 </head>
 <body>
-    <h1>Ficha de Triagem</h1>
-    <div class="formulario">
-        <label for="nome">
-        Nome:
-        <input type="text" id="nome" placeholder="Nome" class="nomeInput"> <br>
-        </label>
-        <label for="CPF">
-        CPF: <input type="text" id="CPF" placeholder="000.000.000-00" maxlength="11" class="CPFinput"> <br>
-        </label>
-        <label for="sintomas">
-        Sintomas:  <textarea name="sintomas" id="sintomas" placeholder="Digite os sintomas do Paciente" minlength="5" maxlength="100" class="textInput"></textarea>  <br> <br>
-        </label>
-
-        <button onclick="verificarCadastro()">Verificar</button>
-        <h3>Confirmação agendamento</h3>
-        <div id="resultados"></div>
-    </div>
+    <form onsubmit="verificarCadastro(event); return false" class="formulario">
+        <div class="foto">
+            
+        </div>
+            <fieldset class="campos">
+                <legend> Ficha de Triagem</legend>
+                <label for="nome">
+                Nome:
+                <input type="text" id="nome" placeholder="Nome" class="nomeInput" required>
+                </label>
+                <label for="CPF">
+                CPF:
+                <input type="text" id="CPF" placeholder="000.000.000-00" maxlength="11" class="CPFinput" required>
+                </label>
+                <label for="sintomas">
+                Sintomas:<textarea name="sintomas" id="sintomas" placeholder="Digite os sintomas do Paciente" minlength="5" maxlength="100" class="textInput" required></textarea>
+                </label>
+                <div id="resultados"></div>
+                <div class="btn-father">
+                    <button onclick="verificarCadastro()">Verificar</button>
+                </div>
+            </fieldset>
+        </form>
     <script>
-        function verificarCadastro(){
-            const resultado = document.getElementById('resultados') 
+        function verificarCadastro(event){
+            event.preventDefault();
+            const resultado = document.getElementById('resultados');
             resultado.innerHTML = ' ';
             const nome = document.getElementById('nome').value;
             const CPF = document.getElementById('CPF').value;
             const sintomas = document.getElementById('sintomas').value;
+
         //Verificando tamanho do nome: 
+
         if(nome.length >= 3 && CPF.length === 11 && !isNaN(CPF) && sintomas.length >= 5 && sintomas.length <= 100 ){
-            resultado.innerHTML += '<p class="pass">✔️ Nome válido </p>'; 
-            resultado.innerHTML +='<p class="pass"> ✔️ CPF CORRETO! ';
-            resultado.innerHTML += '<p class="pass"> ✔️ Dentro dos parâmetros </p>';
+           // resultado.innerHTML += '<p class="pass">✔️</p>'; 
+           // resultado.innerHTML += '<p class="pass">✔️</p>';
+           // resultado.innerHTML += '<p class="pass">✔️</p>';
             sessionStorage.setItem('nome', nome); 
             sessionStorage.setItem('CPF', CPF);
             sessionStorage.setItem('sintomas', sintomas);
-            window.location.href = 'sintomas.html';
+            window.location.href = '/sintomas.html';
+
         }else{
-            resultado.innerHTML += '<p class="fail">❌ Nome Possui menos de 2 letras.</p>';
-            resultado.innerHTML +='<p class="fail"> ❌ CPF está muito curto.</p>';
-            resultado.innerHTML += '<p class="fail"> ❌ Quantidade de caractéres insuficiente</p>';
+         //  resultado.innerHTML += '<p class="fail">❌ Nome Possui menos de 2 letras.</p>';
+         //  resultado.innerHTML +='<p class="fail"> ❌ CPF está muito curto.</p>';
+         //  resultado.innerHTML += '<p class="fail"> ❌ Quantidade de caractéres insuficiente</p>';
             alert("Acesso NEGADO: Verifique as informações!");
         }
     }

@@ -1,0 +1,23 @@
+body {
+    text-align: center;
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+    height: 86vh;
+}
+h1 {
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.502);
+}
+
+#resultado {
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: antiquewhite;
+    height: 150px;
+    width: 300px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.514);
+}
+
+

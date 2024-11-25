@@ -1,0 +1,131 @@
+
+.pass{color: green;}
+.fail{color: red;}
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+background-color: #5f0c5fc0;
+background-image: url(/imagens/Untitled\ design.png);
+background-size: cover;
+height: 100vh;
+background-repeat: no-repeat;
+background-position: right center;
+    }
+.formulario{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    flex-direction: row;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.514);
+    text-align:left;
+    padding: 10px;
+    margin: 0px;
+    border: 2px solid rgba(0, 0, 0, 0.712);
+    font-size: 18px;
+    border-radius: 5px;
+    width: 600px;
+    height: 400px;
+    margin: auto;
+    background:linear-gradient(to left, rgb(240, 246, 255), lightblue)
+}
+
+.foto {
+    background-image: url(/imagens/pexels-pixabay-40568.jpg);
+    background-size: cover;
+    background-position: left center;
+    background-repeat: no-repeat;
+    padding: 12px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    margin-right: 20px;
+    border-radius: 5px;
+    width: 530px;
+    height: 380px;
+}
+
+legend {
+    letter-spacing: 2px;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.campos {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 350px;
+    padding: 6px;
+    border: 0px;
+}
+
+
+.nomeInput{
+    width: 270px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.nomeInput:hover {
+    transform: translateY(2px);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.252);
+    transition: all .35s;
+}
+
+.CPFinput{
+    border: 1px solid black;
+    border-radius: 5px;    
+    padding: 5px;
+    width: 270px;
+}
+
+.CPFinput:hover {
+    transform: translateY(2px);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.239);
+    transition-duration: .35s;
+}
+
+.textInput{
+    resize: none;
+    border-radius: 5px;
+    padding: 5px;
+    width: 272px;
+    height: 70px;
+}
+
+.textInput:hover {
+    transform: translateY(2px);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.239);
+    transition: all .35s;
+}
+
+button{
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    border: 1px solid #333;
+    letter-spacing: 2px;
+    text-align: center;
+    padding: 15px 40px;
+    transition: all .35s;
+    width: 270px;
+    padding: 3px;
+    background-color: aliceblue;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.239);
+}
+
+

@@ -28,7 +28,7 @@
     </div>
 
     <script>
-        async function verificarCadastro() {
+       async function verificarCadastro() {
             const resultado = document.getElementById('resultados');
             resultado.innerHTML = ''; // Limpar mensagens anteriores
 
@@ -64,7 +64,6 @@
                     if (!response.ok) {
                         throw new Error(`Erro na API: ${response.statusText}`);
                     }
-
                     const data = await response.json();
 
                     // Verificando se há uma resposta válida
