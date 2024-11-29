@@ -23,13 +23,14 @@
                 <label for="CPF">
                 CPF:
                 <input type="text" id="CPF" placeholder="000.000.000-00" maxlength="14" class="CPFinput" oninput="formatarCPF()" required>
+                <div id="mensagemCPF"></div>
                 </label>
                 <label for="sintomas">
                 Sintomas:<textarea name="sintomas" id="sintomas" placeholder="Digite os sintomas do Paciente" minlength="5" maxlength="100" class="textInput" required></textarea>
                 </label>
                 <div id="resultados"></div>
                 <div class="btn-father"> 
-                <button onclick="verificarCadastro()">Verificar</button>
+                <button type="submit">Verificar</button>
                 </div>
             </fieldset>
         </form>
