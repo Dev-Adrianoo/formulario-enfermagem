@@ -21,12 +21,13 @@ justify-content: center;
 align-items: center;
 flex-direction: column;
 background-color: #5f0c5fc0;
-background-image: url(/imagens/Untitled\ design.png);
+background-image: url(/imagens/medical-banner-with-doctor-wearing-goggles.jpg);
 background-size: cover;
 height: 100vh;
 background-repeat: no-repeat;
 background-position: right center;
-    }
+}
+
 .formulario{
     display: flex;
     justify-content: center;
