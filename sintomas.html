@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesSintomas/style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <link rel="shortcut icon" href="imagens/nurse (1).png" type="image/x-icon">
     <title>Sintomas</title>
 </head>
@@ -12,23 +12,12 @@
     <section class="section"> 
         <h1>Dados Do Paciente</h1>
         <a href="https://www.ubbonline.org.br/noticias-10-cuidados-essenciais-para-o-uso-correto-de-medicamentos.html" target="_blank">
-            <img src="imagens/nurse.png" class="nurse"></a>
+            <img src="imagens/nurse.png" class="nurse" alt="Imagem de enfermeira">
+        </a>
         <div id="resultado"></div>
+        <div id="causas">
+        </div>
         <a href="/index.html"><button>Voltar</button></a>
     </section>
-    <script>
-        const nome = sessionStorage.getItem('nome');
-        const cpf = sessionStorage.getItem('CPF');
-        const sintomas = sessionStorage.getItem('sintomas');
-        if(nome && cpf && sintomas){
-            document.getElementById('resultado').innerHTML = `
-            <p><strong>Nome: </strong> ${nome}</p>
-            <p><strong>CPF: </strong> ${cpf}</p>
-            <p><strong>Sintomas: </strong> ${sintomas}</p>`
-        }
-        else {
-            document.getElementById('resultado').innerHTML = '<p>Dados não encontrados.</p>';
-        }
-    </script>
 </body>
 </html>

@@ -40,7 +40,7 @@ background-position: right center;
     font-size: 18px;
     border-radius: 5px;
     width: 600px;
-    height: 410px;
+    height: 430px;
     margin: auto;
     background:linear-gradient(to left, #ADD8E6, #f3f2f0);
 }
@@ -58,6 +58,12 @@ background-position: right center;
     height: 380px;
 }
 
+.foto:hover {
+    transform: translateY(-7px);
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.383);
+    transition: all 0.35s;
+}
+
 legend {
     font-family: "Playfair Display", serif;
     font-weight: bold;
@@ -70,7 +76,7 @@ legend {
 .campos {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
     height: 350px;
     padding: 6px;
     border: 0px;
@@ -105,6 +111,10 @@ legend {
     transition-duration: .35s;
 }
 
+#mensagemCPF {
+    font-size: 15px;
+    margin-top: 5px;
+}
 
 .textInput{
     resize: none;
@@ -121,6 +131,7 @@ legend {
     transition: all .35s;
 }
 
+
 button{
     border-radius: 5px;
     font-size: 16px;
@@ -130,7 +141,6 @@ button{
     border: 1px solid #333;
     letter-spacing: 1px;
     text-align: center;
-    padding: 15px 40px;
     transition: all .35s;
     width: 270px;
     padding: 4px;
